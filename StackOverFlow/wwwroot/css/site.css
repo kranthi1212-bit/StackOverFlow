@@ -1,0 +1,66 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.div1{
+    padding-left:7%;
+    width:230px;
+}
+.img{
+    height: 30px;
+    width: 125px;
+}
+.btnsearch {
+    width: 700px;
+    height: 85%;
+    border-radius: 10px;
+}
+.maindiv {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding-right: 7%;
+    padding-left: 7%
+}
+.signpage,.logpage {
+    width: 100%;
+    max-width: 435px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 41px 30px;
+    box-shadow: 0 15px 15px 15px rgba(0.12, 0.12, 0.12, 0.12);
+}
+.signupdiv,.loginpage{
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 10px;
+    display: flex;
+    /*background:#c2d3e6;*/
+    justify-content: center;
+    align-items: center;
+}
+.questiondiv {
+    width: 100%;
+    max-width: 835px;
+    border-radius: 6px;
+    padding: 41px 30px;
+}

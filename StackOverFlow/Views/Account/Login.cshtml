@@ -1,0 +1,50 @@
+﻿@model StackOverFlow.Models.LoginModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="~/images/stack.png" />
+    <title>@ViewData["Title"] - Stackoverflow</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StackOverFlow.styles.css" asp-append-version="true" />
+</head>
+<div class="loginpage row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div class="logpage">
+                <h1 style="text-align:center">Login</h1>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="RememberMe" class="form-ckeck-input" />
+                    <label asp-for="RememberMe" class="control-label"></label>
+                    <span asp-validation-for="RememberMe" class="text-danger"></span>
+                </div>
+                &nbsp;&nbsp;
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" style="width:100%" />
+                </div>
+                <p>click<a asp-action="Register" asp-controller="Account"> here</a> to Register</p>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

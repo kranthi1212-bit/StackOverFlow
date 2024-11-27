@@ -1,0 +1,31 @@
+﻿@model IEnumerable<StackOverFlow.Models.Question>
+
+@{
+    ViewData["Title"] = "TopQuestions";
+}
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between w-75">
+    <div>
+        <h2>Top Questions</h2>
+    </div>
+    <div class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a asp-action="askquestion" class="btn btn-primary">Ask question</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div>
+    <div>
+        <div class=" w-75">
+            @foreach (var item in Model)
+            {
+                <div class="form-control">
+                    <a asp-action="DisplayQuestion" asp-route-QuestionId="@item.QuestionId" class="nav-item">@Html.DisplayFor(modelItem => item.Title)</a>
+                    <br />
+                </div>
+                <br />
+            }
+        </div>
+    </div>
+</div>
