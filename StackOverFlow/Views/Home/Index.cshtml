@@ -1,13 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div class="navbar-nav ml-auto">
-        <div class="nav-item">
-            <a asp-action="askquestion" asp-controller="Questions" class="btn btn-primary">Ask Question</a>
-        </div>  
-    </div>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+	<div class="row">
+		<div class="col-sm">
+			<h2>Every <span style="color:orangered">developer</span> has a tab open to Stack Overflow.</h2>
+			<p>For over 15 years we’ve been the Q&A platform of choice that millions of people visit every month to ask questions, learn, and share technical knowledge.</p>
+		</div>
+		<div class="col-sm">
+			<img src="~/images/stack_home_hero.png" class="Indeximg"/>
+		</div>
+	</div>
 </div>
