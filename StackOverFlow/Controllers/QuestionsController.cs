@@ -28,11 +28,19 @@ namespace StackOverFlow.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> askquestion(Question question)
-        {           
-            question.UserId = context.Users.First().Id;
-            context.Questions.Add(question);
-            context.SaveChanges();  
-            return RedirectToAction("Index", "Home");
+        {
+            try
+            {
+                question.UserId = context.Users.First().Id;
+                context.Questions.Add(question);
+                context.SaveChanges();
+                return RedirectToAction("DisplayQuestions");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid Content");
+            }
+            return View();
         }
         public ActionResult DisplayQuestions()
         {
@@ -43,18 +51,26 @@ namespace StackOverFlow.Controllers
             return View(context.Questions);
         }
         public ActionResult DisplayQuestion(int QuestionId)
-        {      
-            Question question = context.Questions.Find(QuestionId);
-            var answer = context.Answers.Where(a => a.QuestionId.Equals(QuestionId)).ToList();
-            var model = new Tuple<Question,IEnumerable<Answer>>(question,answer);         
-            return View(model);   
+        {
+            if (ModelState.IsValid)
+            {
+                var question = context.Questions.Find(QuestionId);
+                var answer = context.Answers.Where(a => a.QuestionId.Equals(QuestionId)).ToList();
+                var model = new Tuple<Question, IEnumerable<Answer>>(question, answer);
+                return View(model);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Content Not Available");
+            }
+            return View();
         }
         public async Task<ActionResult> Answer(Answer answer)
         {
             answer.UserId = context.Users.First().Id;
             context.Answers.Add(answer);
             context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DisplayQuestions","Questions");
         }
     }
 }

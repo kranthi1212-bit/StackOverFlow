@@ -20,10 +20,7 @@ html {
 body {
   margin-bottom: 60px;
 }
-.div1{
-    padding-left:7%;
-    width:230px;
-}
+
 .img{
     height: 30px;
     width: 125px;
@@ -65,8 +62,8 @@ body {
     padding: 41px 30px;
 }
 .mainimg{
-    width:140px;
-    height:50px;
+    width:130px;
+    height:30px;
 }
 .Indeximg{
     height:200px;
@@ -78,4 +75,22 @@ body {
     -webkit-box-orient: vertical; /* Specifies the orientation of the box */
     overflow: hidden; /* Ensures content exceeding the lines is hidden */
     text-overflow: ellipsis; /* Adds ellipsis (...) at the end of the visible text */
+}
+.scroll {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    width: 200px;
+    height: 700px;
+    overflow:clip;
+    overflow-x:hidden;
+    overflow-y:visible;
+    white-space: nowrap;
+    position:center;
+}
+.div1{
+    padding-left:7%;
+    padding-right:200px;
+    width:80px;
+    height:800px;
 }

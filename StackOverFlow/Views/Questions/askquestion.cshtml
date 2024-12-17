@@ -33,7 +33,8 @@
             <div class="form-group">
                 <label>What are the details of your problem?</label>
                 <p>Introduce the problem and expand on what you put in the title. Minimum 20 characters.</p>
-                <textarea asp-for="Content" class="form-control" style="height:200px"></textarea>
+                <textarea asp-for="QusContent" class="form-control" style="height:200px"></textarea>
+                <span asp-validation-for="QusContent" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
