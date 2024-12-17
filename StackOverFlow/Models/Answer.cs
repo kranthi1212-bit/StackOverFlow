@@ -1,8 +1,11 @@
-﻿namespace StackOverFlow.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StackOverFlow.Models
 {
     public class Answer
     {
     public int AnswerId { get; set; }
+    [Required]
     public string Content { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
