@@ -44,10 +44,11 @@ namespace StackOverFlow.Controllers
         }
         public ActionResult DisplayQuestions()
         {
+            ViewBag.Count = context.Questions.Count();
             return View(context.Questions);
         }
         public ActionResult TopQuestions()
-        {
+        {            
             return View(context.Questions);
         }
         public ActionResult DisplayQuestion(int QuestionId)

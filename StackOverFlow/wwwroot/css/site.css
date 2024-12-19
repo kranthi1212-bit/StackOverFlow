@@ -80,17 +80,31 @@ body {
     margin: 0;
     padding: 0;
     background-color: white;
-    width: 200px;
+    width: 165px;
     height: 700px;
     overflow:clip;
     overflow-x:hidden;
     overflow-y:visible;
     white-space: nowrap;
-    position:center;
 }
 .div1{
     padding-left:7%;
     padding-right:200px;
-    width:80px;
+    width:60px;
     height:800px;
+}
+.teamsimg{
+    width:130px;
+    height:25px;
+}
+ul {
+    list-style-type: none;
+}
+.btnsty{
+    border:none;
+}
+.sidediv {
+    background-color: antiquewhite;
+    border-width: 2px;
+    border-color: bisque
 }
