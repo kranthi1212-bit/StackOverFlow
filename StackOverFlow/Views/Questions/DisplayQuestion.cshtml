@@ -5,7 +5,7 @@
     var Quid = Context.Request.Query["QuestionId"];
 }
 <div class="w-75">
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between w-100">
         <div class="nav-item w-75">
             <p style="font-size:24px">@Html.DisplayFor(model => model.Item1.Title)</p>
         </div>
@@ -21,11 +21,8 @@
         <hr />
         <div>
             <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Item1.Content)
-                </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Item1.Content)
+                    @Html.DisplayFor(model => model.Item1.QusContent)
                 </dd>
             </dl>
         </div>
@@ -38,20 +35,19 @@
     {
         <div class=" w-75">
             <ul class="form-text">
-                <li>@Html.DisplayFor(model => answers.Content)</li>
+                <li>@Html.DisplayFor(model => answers.AnsContent)</li>
             </ul>
         </div>
         <br />
     }
     <hr />
 </div>
-
 <div class="w-75">
     <div>
         <h2>Your Answer</h2>
         <form asp-action="Answer" asp-controller="Questions" asp-route-QuestionId="@Quid" class="form-control">
             <div class="form-group">
-                <textarea id="Content" name="Content" class="form-control" style="height:200px" placeholder="Submit answer here"></textarea>
+                <textarea id="AnsContent" name="AnsContent" class="form-control" style="height:200px" placeholder="Submit answer here" required title="Please fill Answer"></textarea>               
             </div>
             <br />
             <div class="form-group">

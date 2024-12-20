@@ -1,35 +1,95 @@
 ﻿@model IEnumerable<StackOverFlow.Models.Question>
 
 @{
-    ViewData["Title"] = "DisplayQuestions";
+	ViewData["Title"] = "DisplayQuestions";
 }
-<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between w-75">
-    <div>
-        <h2>All Questions</h2>
-    </div>
-    <div class="navbar-nav ml-auto">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a asp-action="askquestion" class="btn btn-primary">Ask question</a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div>
-    <div>
-        <div class=" w-75">
-            @foreach (var item in Model)
-            {
-                <div class="form-control">
-                    <a asp-action="DisplayQuestion" asp-route-QuestionId="@item.QuestionId" class="nav-item" style="font-size:large" >@Html.DisplayFor(modelItem => item.Title)</a>
-                    <br />
-                    <span class="two-line">
-                    @Html.DisplayFor(modelItem => item.Content)
-                    </span>
-                    <br />
-                </div>
-                <br />
-            }
-        </div>
-    </div>
+<div class="d-sm-inline-flex">
+	<div style="padding-right:20px;font-size:smaller;font-style:normal">
+		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="width:750px">
+			<div>
+				<h3>Newest Questions</h3>
+			</div>
+			<div class="navbar-nav ml-auto">
+				<a asp-action="askquestion" class="btn btn-primary">Ask question</a>
+			</div>
+		</div>
+		<br />
+		<br />
+		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="width:750px">
+			<div>
+				@ViewBag.Count &nbsp;questions
+			</div>
+			<div class="d-flex">
+				<div>
+					<ul class="d-flex form-control">
+						<li><button class="btnsty">Newest</button></li>
+						<li><button class="btnsty">Active</button></li>
+						<li><button class="btnsty">Bountied</button></li>
+						<li><button class="btnsty">Unanswered</button></li>
+						<li class="btnsty">
+							<select id="More" name="More" style="width:60px;border:none">
+								<option selected disabled>More</option>
+								<option value="Frequent">Frequent</option>
+								<option value="Score">Score</option>
+								<option value="Trending">Trending</option>
+								<option value="Week">Week</option>
+								<option value="Month">Month</option>
+								<hr />
+								<option disabled>Unanswerd (my tags)</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+				&nbsp;&nbsp;&nbsp;
+				<div>
+					<button class="btn btn-outline-primary"><i class="bi bi-filter"></i> Filter</button>
+				</div>
+			</div>
+		</div>
+		<br />
+		<br />
+		<div>
+			<div>
+				<div style="width:750px">
+					@foreach (var item in Model)
+					{
+						<div class="form-control">
+							<a asp-action="DisplayQuestion" asp-route-QuestionId="@item.QuestionId" class="nav-item" style="font-size:large">@Html.DisplayFor(modelItem => item.Title)</a>
+							<br />
+							<span class="two-line">
+								@Html.DisplayFor(modelItem => item.QusContent)
+							</span>
+							<br />
+						</div>
+						<br />
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="width:300px;height:270px">
+		<div class="sidediv form-control">
+			<h6>The Overflow Blog</h6>
+			<div>
+				<p class="text-dark" >
+					<a asp-action="">Legal advice from an AI is Illegal</a><br />
+					<a asp-action="">
+						Why do developers love clean code but
+						hate writing documentation?
+					</a>
+				</p>
+			</div>
+			<hr />
+			<div>
+				<h6>Featured on Meta</h6>
+               <a asp-action="">
+					The December 2024 Community Asks
+					Sprint has been moved to March 2025 (and...
+				</a><br />
+				<a asp-action="">
+					Stack Overflow Jobs is expanding to more countries
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
