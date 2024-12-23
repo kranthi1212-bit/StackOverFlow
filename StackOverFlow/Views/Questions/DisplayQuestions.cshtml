@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<StackOverFlow.Models.Question>
 
 @{
-	ViewData["Title"] = "DisplayQuestions";
+	ViewData["Title"] = ViewBag.Titletag;
 }
 <div class="d-sm-inline-flex">
 	<div style="padding-right:20px;font-size:smaller;font-style:normal">
 		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="width:750px">
 			<div>
-				<h3>Newest Questions</h3>
+				<h4>@ViewBag.Titletag Questions</h4>
 			</div>
 			<div class="navbar-nav ml-auto">
 				<a asp-action="askquestion" class="btn btn-primary">Ask question</a>
@@ -17,32 +17,85 @@
 		<br />
 		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="width:750px">
 			<div>
-				@ViewBag.Count &nbsp;questions
+				@ViewBag.Count &nbsp; questions
 			</div>
 			<div class="d-flex">
 				<div>
-					<ul class="d-flex form-control">
-						<li><button class="btnsty">Newest</button></li>
-						<li><button class="btnsty">Active</button></li>
-						<li><button class="btnsty">Bountied</button></li>
-						<li><button class="btnsty">Unanswered</button></li>
-						<li class="btnsty">
-							<select id="More" name="More" style="width:60px;border:none">
-								<option selected disabled>More</option>
-								<option value="Frequent">Frequent</option>
-								<option value="Score">Score</option>
-								<option value="Trending">Trending</option>
-								<option value="Week">Week</option>
-								<option value="Month">Month</option>
-								<hr />
-								<option disabled>Unanswerd (my tags)</option>
-							</select>
-						</li>
-					</ul>
+					<form asp-action="DisplayQuestions">
+						<ul class="d-flex form-control">
+							<li><button type="submit" name="buttonType" value="Newest" class="btnsty">Newest</button></li>
+							<li><button type="submit" name="buttonType" value="Active" class="btnsty">Active</button></li>
+							<li><button type="submit" name="buttonType" value="Bountied" class="btnsty">Bountied</button></li>
+							<li><button type="submit" name="buttonType" value="Unanswered" class="btnsty">Unanswered</button></li>
+							<li class="btnsty">
+								<select id="More" name="buttonType" class="btnsty" style="width:60px;">
+									<option selected disabled>More</option>
+									<option value="Frequent">Frequent</option>
+									<option value="Score">Score</option>
+									<option value="Trending">Trending</option>
+									<option value="Week">Week</option>
+									<option value="Month">Month</option>
+									<hr />
+									<option disabled>Unanswerd (my tags)</option>
+								</select>
+							</li>
+						</ul>
+					</form>
 				</div>
 				&nbsp;&nbsp;&nbsp;
 				<div>
-					<button class="btn btn-outline-primary"><i class="bi bi-filter"></i> Filter</button>
+					<button class="btn btn-outline-primary" onclick="myFunction()"><i class="bi bi-filter"></i> Filter</button>
+				</div>
+			</div>
+		</div>
+		<div id="myDIV">
+			<div class="d-flex">
+				<div class="gdiv">
+					<strong>Filter by</strong><br />
+					<input type="checkbox" id="noanswers" />
+					<label for="noanswers">No answers</label><br />
+					<input type="checkbox" id="noacceptedanswer" />
+					<label for="noacceptedanswer">No accepted answer</label><br />
+					<input type="checkbox" id="hasbounty" />
+					<label for="hasbounty">Has bounty</label><br />
+					<input type="number" id="nub" min="1" style="width:60px;height:35px"/>
+					<label for="nub">Days old</label>
+				</div>
+				<div class="gdiv">
+					<strong>Sorted by</strong><br />
+					<input type="radio" id="Newest" value="Newest" name="sort" />
+					<label for="Newest">Newest</label><br />
+					<input type="radio" id="recentactivity" value="Recent activity" name="sort" />
+					<label for="" recentactivity">Recent activity</label><br />
+					<input type="radio" id="highestscore" value="Highest score" name="sort" />
+					<label for="highestscore">Highest score</label><br />
+					<input type="radio" id="mostfrequent" value="Most frequent" name="sort" />
+					<label for="mostfrequent">Most frequent</label><br />
+					<input type="radio" id="bountyending" value="Bounty ending soon" name="sort" />
+					<label for="bountyending">Bounty ending soon</label><br />
+					<input type="radio" id="trending" value="Trending" name="sort" />
+					<label for="trending">Trending</label><br />
+					<input type="radio" id="mostactivity" value="Most activity" name="sort" />
+					<label for="mostactivity">Most activity</label>
+				</div>
+				<div class="gdiv">
+					<strong>Tagged with</strong><br />
+					<input type="radio" id="Mywatchedtags" value="Trending" name="sort1" />
+					<label for="trending">My watched tags</label><br />
+					<input type="radio" id="followingtags" value="Most activity" name="sort1" />
+					<label for="mostactivity">The following tags:</label><br />
+					<input type="text" id="followingtags" placeholder="e.x.javascript or python" class="form-control"/>
+				</div>				
+			</div>
+			<hr />
+			<div class="d-flex filtdiv justify-content-between">
+				<div>
+					<button class="btn btn-primary">Apply Filter</button>
+				</div>
+				<div>
+					<ul class="nav-bar nav ml-auto" style="padding-right:10px;">
+						<li class="nav-item"><button class="btn btn-outline-primary" onclick="cancelFuntion()" style="border:none;">Cancel</button></li>
+					</ul>					
 				</div>
 			</div>
 		</div>
@@ -71,7 +124,7 @@
 		<div class="sidediv form-control">
 			<h6>The Overflow Blog</h6>
 			<div>
-				<p class="text-dark" >
+				<p class="text-dark">
 					<a asp-action="">Legal advice from an AI is Illegal</a><br />
 					<a asp-action="">
 						Why do developers love clean code but
@@ -82,7 +135,7 @@
 			<hr />
 			<div>
 				<h6>Featured on Meta</h6>
-               <a asp-action="">
+				<a asp-action="">
 					The December 2024 Community Asks
 					Sprint has been moved to March 2025 (and...
 				</a><br />
