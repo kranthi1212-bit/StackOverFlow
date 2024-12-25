@@ -55,7 +55,14 @@ namespace StackOverFlow.Controllers
                 var result = await signinManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index","Home");
+                    if (string.IsNullOrEmpty(loginModel.ReturnUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return LocalRedirect(loginModel.ReturnUrl); 
+                    }
                 }
             }
             return View(loginModel);

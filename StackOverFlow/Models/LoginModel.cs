@@ -12,6 +12,7 @@ namespace StackOverFlow.Models
         public string Password { get; set; }
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; } = "";
 
     }
 }
