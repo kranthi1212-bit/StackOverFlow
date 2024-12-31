@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace StackOverFlow.Models
 {
@@ -19,5 +20,7 @@ namespace StackOverFlow.Models
         // Navigation Properties
         public ICollection<Answer> Answers { get; set; }
 
+        // Navigation property
+        public virtual IdentityUser User { get; set; }
     }
 }

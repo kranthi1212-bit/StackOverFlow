@@ -61,22 +61,19 @@ namespace StackOverFlow.Controllers
                     break;
                 case "Active":
                     ViewBag.Titletag = "Recently Active";
-                    var Queid = context.Answers.Select(U => U.QuestionId).ToList();
-                    if (Queid != null)
+                    var answeredQuestionIds = context.Answers.Select(a => a.QuestionId).Distinct().ToList();
+                    if (answeredQuestionIds == null || !answeredQuestionIds.Any())
                     {
-                        var question = context.Questions.Where(U => U.QuestionId.Equals(Queid)).ToList();
-                        return View(question);
+                        return View(new List<Question>()); // No answered questions
                     }
+                    var answeredQuestions = context.Questions.Where(q => answeredQuestionIds.Contains(q.QuestionId)).ToList();
+                         return View(answeredQuestions);
                     break;
                 case "Bountied":
                     ViewBag.Titletag = "Bountied";
                     break;
                 case "Unanswered":
                     ViewBag.Titletag = "Unanswered";
-                    var unansque = context.Answers.Select(U => U.QuestionId).ToList();
-                    var unansque1 = context.Questions.Select(U => U.QuestionId).ToList();
-                    if (unansque != null)
-                        return View(context.Questions.Where(U => U.QuestionId.Equals(unansque)).ToList());   
                     break;
                 case "Frequent":
                     ViewBag.Titletag = "Frequent";
