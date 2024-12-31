@@ -55,10 +55,7 @@ body {
     align-items: center;
 }
 .questiondiv {
-    width: 100%;
-    max-width: 835px;
-    border-radius: 6px;
-    padding: 41px 30px;
+    padding-top: 20px;
 }
 .mainimg{
     width:130px;
